@@ -80,6 +80,71 @@ $this->dispatch('toast', [
 ]);
 ```
 
+## PHP API (No Livewire Required)
+
+Use the `GooeyToast` facade to trigger toasts directly from PHP code. Works with any Laravel project, no Livewire needed:
+
+```php
+use Gooey\Toast\Facades\GooeyToast;
+
+// Quick toasts
+GooeyToast::success('Saved!');
+GooeyToast::error('Something went wrong');
+GooeyToast::warning('Warning message');
+GooeyToast::info('Information');
+
+// Fluent builder
+GooeyToast::make('Title', 'success')
+    ->message('Additional message')
+    ->send();
+
+// With avatar
+GooeyToast::make('New message', 'info')
+    ->avatar('/avatars/user.jpg')
+    ->avatarSize('32px')
+    ->send();
+
+// Full configuration
+GooeyToast::make('Deployment complete', 'success')
+    ->details([
+        ['label' => 'Environment', 'value' => 'Production'],
+        ['label' => 'Branch', 'value' => 'main'],
+    ])
+    ->footer('https://deploy.example.com/logs/123')
+    ->duration(5000)
+    ->send();
+```
+
+### Available Methods
+
+| Method | Description |
+|--------|-------------|
+| `make($title, $type)` | Create a new toast |
+| `success($title, $message)` | Quick success toast |
+| `error($title, $message)` | Quick error toast |
+| `warning($title, $message)` | Quick warning toast |
+| `info($title, $message)` | Quick info toast |
+
+### Builder Methods
+
+| Method | Description |
+|--------|-------------|
+| `title($title)` | Set toast title |
+| `type($type)` | Set toast type |
+| `message($message)` | Set message (shown in details) |
+| `details($array)` | Set detail rows |
+| `detail($label, $value)` | Add a detail row |
+| `footer($text)` | Set footer text |
+| `actions($array)` | Set action buttons |
+| `action($label, $event, $icon)` | Add an action button |
+| `duration($ms)` | Set duration |
+| `persistent()` | Make persistent |
+| `color($color)` | Set custom color |
+| `avatar($url)` | Set avatar image |
+| `avatarSize($size)` | Set avatar size |
+| `id($id)` | Set toast ID |
+| `send()` | Send the toast |
+
 ## Toast Types
 
 | Type | Color | Entrance |

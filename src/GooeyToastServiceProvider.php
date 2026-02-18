@@ -12,6 +12,11 @@ class GooeyToastServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/gooey-toast.php', 'gooey-toast');
+
+        // Register the Toast singleton
+        $this->app->singleton(Toast::class, function ($app) {
+            return new Toast();
+        });
     }
 
     public function boot(): void

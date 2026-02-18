@@ -15,7 +15,18 @@
         'top-right'     => 'position:fixed;top:2rem;right:2rem',
         default         => 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%)',
     };
+
+    // Load toasts from session (for PHP API)
+    $sessionToasts = session('gooey-toasts', []);
+    session()->forget('gooey-toasts');
 @endphp
+
+{{-- Dispatch session toasts to JavaScript --}}
+@if(!empty($sessionToasts))
+@foreach($sessionToasts as $toast)
+<script>window.dispatchEvent(new CustomEvent('toast', { detail: {{ json_encode($toast) }} }));</script>
+@endforeach
+@endif
 
 <div
     x-data="gooeyToast({{ $duration }}, {{ $maxToasts }}, '{{ $theme }}', '{{ $position }}')"
