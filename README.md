@@ -309,6 +309,31 @@ return [
 ];
 ```
 
+## User Avatars
+
+Display a user avatar image instead of the default type icon:
+
+```js
+toast({
+    title: 'New message from John',
+    avatar: '/avatars/john.jpg',
+    type: 'info'
+});
+```
+
+### Custom Avatar Size
+
+Override the default size (18px) with any CSS unit:
+
+```js
+toast({
+    title: 'Welcome back!',
+    avatar: '/avatars/user.png',
+    avatarSize: '32px',
+    type: 'success'
+});
+```
+
 ## Full Options Reference
 
 ```js
@@ -316,6 +341,8 @@ toast({
     type: 'success',             // success, error, warning, info, loading
     title: 'Notification',       // required
     id: 'my-id',                 // optional — use for updates
+    avatar: '/path/to/image.jpg', // optional — avatar image URL
+    avatarSize: '32px',         // optional — avatar size (default: 18px)
     details: [                   // optional — expandable rows
         { label: 'Key', value: 'Value' },
     ],
@@ -326,7 +353,7 @@ toast({
     duration: 5000,              // optional — override config duration
     persistent: false,           // optional — never auto-dismiss
     color: '#8b5cf6',            // optional — override type color
-    progress: 0.5,               // optional — show progress bar (0 to 1)
+    progress: 0.5,              // optional — show progress bar (0 to 1)
     icon: 'star',                // optional — override type icon (registered name)
 });
 ```

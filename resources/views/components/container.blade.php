@@ -56,10 +56,20 @@
                      @keydown.enter="toggle(toast)"
                      @keydown.space.prevent="toggle(toast)"
                 >
-                    <div class="gooey-toast-tab-icon"
-                         :class="toast.color ? '' : 'gooey-toast-color-' + toast.type"
-                         :style="toast.color ? 'color:' + toast.color : ''"
-                         x-html="toast.iconSvg"></div>
+                    {{-- Avatar (image) or Icon (SVG) --}}
+                    <template x-if="toast.avatar">
+                        <img class="gooey-toast-tab-avatar"
+                             :src="toast.avatar"
+                             :style="toast.avatarSize ? 'width:' + toast.avatarSize + ';height:' + toast.avatarSize : ''"
+                             alt="Avatar"
+                             @onerror="toast.avatar = null">
+                    </template>
+                    <template x-if="!toast.avatar">
+                        <div class="gooey-toast-tab-icon"
+                             :class="toast.color ? '' : 'gooey-toast-color-' + toast.type"
+                             :style="toast.color ? 'color:' + toast.color : ''"
+                             x-html="toast.iconSvg"></div>
+                    </template>
                     <span class="gooey-toast-tab-text"
                           :class="toast.color ? '' : 'gooey-toast-color-' + toast.type"
                           :style="toast.color ? 'color:' + toast.color : ''"

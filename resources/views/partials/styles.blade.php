@@ -67,6 +67,7 @@
     .gooey-toast-tab:active { transform: scale(0.97); }
 
     .gooey-toast-tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
+    .gooey-toast-tab-avatar { width: 18px; height: 18px; flex-shrink: 0; border-radius: 50%; object-fit: cover; }
     .gooey-toast-tab-text { font-size: 13.5px; font-weight: 500; line-height: 1; letter-spacing: -0.01em; }
 
     .gooey-toast-tab-chevron {
@@ -271,7 +272,7 @@
         border-radius: 10px;
         margin: -8px auto 0;
         padding: 8px 12px;
-        width: 200px;
+        width: 80px;
         transition: margin-top 0.45s cubic-bezier(.4,0,.2,1);
     }
     .gooey-toast-expanded .gooey-toast-progress {
