@@ -6,6 +6,15 @@ A gooey expandable toast notification component for Laravel 10 / 11 / 12.
 
 Features a unique SVG gooey blob animation, expandable detail rows, action buttons with icons and colors, promise toasts, progress toasts, undo countdown, persistent toasts, custom colors, message text blocks, vibration, action confirmation, animated timer bars, dark/light theming, and per-type entrance animations. Zero external CSS dependencies — works with any stack.
 
+## Screenshots
+
+![Screenshot](.github/screenshots/1.png)
+![Screenshot](.github/screenshots/2.png)
+![Screenshot](.github/screenshots/3.png)
+![Screenshot](.github/screenshots/4.png)
+![Screenshot](.github/screenshots/5.png)
+![Screenshot](.github/screenshots/6.png)
+
 ## Installation
 
 ```bash
