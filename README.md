@@ -8,12 +8,12 @@ Features a unique SVG gooey blob animation, expandable detail rows, action butto
 
 ## Screenshots
 
-![Screenshot](.github/screenshots/1.png)
-![Screenshot](.github/screenshots/2.png)
-![Screenshot](.github/screenshots/3.png)
-![Screenshot](.github/screenshots/4.png)
-![Screenshot](.github/screenshots/5.png)
-![Screenshot](.github/screenshots/6.png)
+Screenshot 1 - [Click here](.github/screenshots/1.png)
+Screenshot 2 - [Click here](.github/screenshots/2.png)
+Screenshot 3 - [Click here](.github/screenshots/3.png)
+Screenshot 4 - [Click here](.github/screenshots/4.png)
+Screenshot 5 - [Click here](.github/screenshots/5.png)
+Screenshot 6 - [Click here](.github/screenshots/6.png)
 
 ## Installation
 
