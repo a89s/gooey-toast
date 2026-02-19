@@ -1,5 +1,5 @@
 {
-    "name": "gooey/toast",
+    "name": "a89s/gooey-toast",
     "description": "A gooey expandable toast notification component for Laravel, Livewire",
     "type": "library",
     "license": "MIT",
@@ -19,18 +19,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Gooey\\Toast\\": "src/"
+            "A89s\\GooeyToast\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Gooey\\Toast\\Tests\\": "tests/"
+            "A89s\\GooeyToast\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Gooey\\Toast\\GooeyToastServiceProvider"
+                "A89s\\GooeyToast\\GooeyToastServiceProvider"
             ]
         }
     },

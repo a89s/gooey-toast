@@ -1,8 +1,8 @@
 <?php
 
-namespace Gooey\Toast\Tests;
+namespace A89s\GooeyToast\Tests;
 
-use Gooey\Toast\GooeyToastServiceProvider;
+use A89s\GooeyToast\GooeyToastServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra

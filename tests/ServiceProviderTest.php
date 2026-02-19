@@ -37,7 +37,7 @@ it('loads the package views', function () {
 
 it('has publishable config', function () {
     $paths = \Illuminate\Support\ServiceProvider::pathsToPublish(
-        \Gooey\Toast\GooeyToastServiceProvider::class,
+        \A89s\GooeyToast\GooeyToastServiceProvider::class,
         'gooey-toast-config'
     );
 
@@ -46,7 +46,7 @@ it('has publishable config', function () {
 
 it('has publishable views', function () {
     $paths = \Illuminate\Support\ServiceProvider::pathsToPublish(
-        \Gooey\Toast\GooeyToastServiceProvider::class,
+        \A89s\GooeyToast\GooeyToastServiceProvider::class,
         'gooey-toast-views'
     );
 

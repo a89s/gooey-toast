@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Gooey\Toast\Facades;
+namespace A89s\GooeyToast\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Gooey\Toast\Toast as ToastInstance;
+use A89s\GooeyToast\Toast as ToastInstance;
 
 /**
  * @method static ToastInstance make(?string $title = null, ?string $type = null)
@@ -14,7 +14,7 @@ use Gooey\Toast\Toast as ToastInstance;
  * @method static ToastInstance warning(string $title, ?string $message = null)
  * @method static ToastInstance info(string $title, ?string $message = null)
  *
- * @see \Gooey\Toast\Toast
+ * @see \A89s\GooeyToast\Toast
  */
 class GooeyToast extends Facade
 {

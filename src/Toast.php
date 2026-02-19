@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gooey\Toast;
+namespace A89s\GooeyToast;
 
 use Illuminate\Support\Facades\Request;
 

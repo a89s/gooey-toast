@@ -9,7 +9,7 @@ Features a unique SVG gooey blob animation, expandable detail rows, action butto
 ## Installation
 
 ```bash
-composer require gooey/toast
+composer require a89s/gooey-toast
 ```
 
 The package auto-discovers its service provider. No manual registration needed.
@@ -87,7 +87,7 @@ $this->dispatch('toast', [
 Use the `GooeyToast` facade to trigger toasts directly from PHP code. Works with any Laravel project, no Livewire needed:
 
 ```php
-use Gooey\Toast\Facades\GooeyToast;
+use A89s\GooeyToast\Facades\GooeyToast;
 
 // Quick toasts
 GooeyToast::success('Saved!');
