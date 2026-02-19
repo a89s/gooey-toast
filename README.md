@@ -2,6 +2,8 @@
 
 > ⚠️ **Work in progress** — This package is under active development and not production-ready yet. APIs may change. Use at your own risk.
 
+> Inspiration for this package was taken from - <a href="https://github.com/anl331/goey-toast" target="_blank">anl331</a>
+
 A gooey expandable toast notification component for Laravel 10 / 11 / 12.
 
 Features a unique SVG gooey blob animation, expandable detail rows, action buttons with icons and colors, promise toasts, progress toasts, undo countdown, persistent toasts, custom colors, message text blocks, vibration, action confirmation, animated timer bars, dark/light theming, and per-type entrance animations. Zero external CSS dependencies — works with any stack.
