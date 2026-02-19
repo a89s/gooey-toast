@@ -37,14 +37,12 @@ class ToastBuilder
     }
 
     /**
-     * Set the toast message (shown in details)
+     * Set the toast message text
      */
     public function message(?string $message): self
     {
         if ($message) {
-            $this->data['details'] = [
-                ['label' => '', 'value' => $message],
-            ];
+            $this->data['message'] = $message;
         }
         return $this;
     }
@@ -88,13 +86,29 @@ class ToastBuilder
     /**
      * Add an action button
      */
-    public function action(string $label, string $event, ?string $icon = null): self
+    public function action(string $label, string $event, ?string $icon = null, ?string $color = null, bool $confirm = false): self
     {
-        $this->data['actions'][] = [
+        $action = [
             'label' => $label,
             'event' => $event,
             'icon' => $icon,
         ];
+        if ($color) {
+            $action['color'] = $color;
+        }
+        if ($confirm) {
+            $action['confirm'] = true;
+        }
+        $this->data['actions'][] = $action;
+        return $this;
+    }
+
+    /**
+     * Enable vibration when toast appears
+     */
+    public function vibrate(array|bool $pattern = true): self
+    {
+        $this->data['vibrate'] = $pattern;
         return $this;
     }
 

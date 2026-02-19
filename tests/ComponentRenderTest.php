@@ -297,3 +297,74 @@ it('listens for toast-undo events', function () {
 
     expect($html)->toContain('@toast-undo.window="addUndo($event.detail)"');
 });
+
+// --- Action button layout ---
+
+it('lays out multiple action buttons side by side', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('.gooey-toast-actions:has(.gooey-toast-action-btn:nth-child(2))');
+    expect($html)->toContain('flex: 1 1 0');
+});
+
+// --- Action button color ---
+
+it('supports action button color', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain("action.color ? 'background:' + action.color");
+});
+
+// --- Action button confirm ---
+
+it('supports action button confirm step', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('action.confirming');
+    expect($html)->toContain('gooey-toast-action-confirm');
+});
+
+it('includes confirm logic in fireAction', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain("action.confirm && !action.confirming");
+    expect($html)->toContain("action.label = 'Sure?'");
+});
+
+// --- Vibrate ---
+
+it('supports vibrate option', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('navigator.vibrate');
+    expect($html)->toContain('data.vibrate');
+});
+
+// --- Message text block ---
+
+it('includes message template', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('gooey-toast-message');
+    expect($html)->toContain('toast.message');
+});
+
+it('renders message with x-text not x-html', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('class="gooey-toast-message" x-text="toast.message"');
+});
+
+it('includes message css styles', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('.gooey-toast-message');
+    expect($html)->toContain('word-wrap: break-word');
+});
+
+it('includes message in add and updateToast', function () {
+    $html = (string) $this->blade('<x-gooey-toast />');
+
+    expect($html)->toContain('data.message ? String(data.message) : null');
+    expect($html)->toContain('message: message');
+});

@@ -106,6 +106,12 @@
 
                 {{-- Body (expanded) --}}
                 <div class="gooey-toast-body">
+                    <template x-if="toast.message">
+                        <div class="gooey-toast-message" x-text="toast.message"></div>
+                    </template>
+                    <template x-if="toast.message && toast.details.length > 0">
+                        <div class="gooey-toast-sep"></div>
+                    </template>
                     <template x-for="(row, idx) in toast.details" :key="idx">
                         <div class="gooey-toast-row">
                             <span class="gooey-toast-label" x-text="row.label"></span>
@@ -123,7 +129,10 @@
                             <div class="gooey-toast-sep"></div>
                             <div class="gooey-toast-actions">
                                 <template x-for="(action, aidx) in toast.actions" :key="aidx">
-                                    <button class="gooey-toast-action-btn" @click.stop="fireAction(toast, action)">
+                                    <button class="gooey-toast-action-btn"
+                                            :class="action.confirming ? 'gooey-toast-action-confirm' : ''"
+                                            :style="action.color ? 'background:' + action.color + '1a; color:' + action.color : ''"
+                                            @click.stop="fireAction(toast, action)">
                                         <template x-if="action.iconSvg">
                                             <span class="gooey-toast-action-icon" x-html="action.iconSvg"></span>
                                         </template>

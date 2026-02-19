@@ -1,8 +1,10 @@
 # Gooey Toast
 
+> ⚠️ **Work in progress** — This package is under active development and not production-ready yet. APIs may change. Use at your own risk.
+
 A gooey expandable toast notification component for Laravel 10 / 11 / 12.
 
-Features a unique SVG gooey blob animation, expandable detail rows, action buttons with icons, promise toasts, progress toasts, undo countdown, persistent toasts, custom colors, animated timer bars, dark/light theming, and per-type entrance animations. Zero external CSS dependencies — works with any stack.
+Features a unique SVG gooey blob animation, expandable detail rows, action buttons with icons and colors, promise toasts, progress toasts, undo countdown, persistent toasts, custom colors, message text blocks, vibration, action confirmation, animated timer bars, dark/light theming, and per-type entrance animations. Zero external CSS dependencies — works with any stack.
 
 ## Installation
 
@@ -131,12 +133,13 @@ GooeyToast::make('Deployment complete', 'success')
 |--------|-------------|
 | `title($title)` | Set toast title |
 | `type($type)` | Set toast type |
-| `message($message)` | Set message (shown in details) |
+| `message($message)` | Set message text block |
 | `details($array)` | Set detail rows |
 | `detail($label, $value)` | Add a detail row |
 | `footer($text)` | Set footer text |
 | `actions($array)` | Set action buttons |
-| `action($label, $event, $icon)` | Add an action button |
+| `action($label, $event, $icon, $color, $confirm)` | Add an action button |
+| `vibrate($pattern)` | Enable vibration (mobile) |
 | `duration($ms)` | Set duration |
 | `persistent()` | Make persistent |
 | `color($color)` | Set custom color |
@@ -288,9 +291,45 @@ $this->dispatch('toast', [
 ]);
 ```
 
+## Message Text
+
+Display a plain text message block in the expanded body. Unlike `details` (key-value rows), `message` renders as a natural paragraph — ideal for chat notifications, alerts, or any freeform content.
+
+```js
+toast({
+    type: 'info',
+    title: 'Melissa',
+    avatar: '/avatars/melissa.jpg',
+    message: 'Please visit HR when you get a chance 👋',
+    footer: '1h ago',
+});
+```
+
+### Livewire
+
+```php
+$this->dispatch('toast', [
+    'type'    => 'info',
+    'title'   => 'Melissa',
+    'avatar'  => '/avatars/melissa.jpg',
+    'message' => 'Please visit HR when you get a chance 👋',
+    'footer'  => '1h ago',
+]);
+```
+
+### PHP API
+
+```php
+GooeyToast::make('Melissa', 'info')
+    ->avatar('/avatars/melissa.jpg')
+    ->message('Please visit HR when you get a chance 👋')
+    ->footer('1h ago')
+    ->send();
+```
+
 ## Action Buttons
 
-Add clickable buttons to the expanded toast body. Each button dispatches a custom window event and dismisses the toast.
+Add clickable buttons to the expanded toast body. Each button dispatches a custom window event and dismisses the toast. When there are 2+ buttons they display side by side; a single button stays full width.
 
 ```js
 toast({
@@ -308,9 +347,39 @@ window.addEventListener('view-message', (e) => {
 });
 ```
 
+### Action Button Colors
+
+Give individual action buttons a custom color. The button gets a tinted background and colored text.
+
+```js
+toast({
+    type: 'info',
+    title: 'Incoming call',
+    persistent: true,
+    actions: [
+        { label: 'Accept', icon: 'check', event: 'accept', color: '#22c55e' },
+        { label: 'Decline', icon: 'x', event: 'decline', color: '#ef4444' },
+    ],
+});
+```
+
+### Action Confirmation
+
+Add `confirm: true` to an action to require a two-step click. The first click changes the label to "Sure?" for 3 seconds. If clicked again, the event fires. If not, the label reverts.
+
+```js
+toast({
+    type: 'warning',
+    title: 'Delete account',
+    actions: [
+        { label: 'Delete', icon: 'trash', event: 'delete-account', color: '#ef4444', confirm: true },
+    ],
+});
+```
+
 ### Available Icons
 
-`external-link`, `eye`, `undo`, `retry`, `map-pin`, `download`, `copy`, `trash`, `check`, `x`, `image`
+`external-link`, `eye`, `undo`, `retry`, `reply`, `map-pin`, `download`, `copy`, `trash`, `check`, `x`, `image`
 
 You can also register custom icons:
 
@@ -399,6 +468,26 @@ toast({
 });
 ```
 
+## Vibration
+
+Trigger a device vibration (mobile only) when a toast appears. Uses the [Vibration API](https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API) — silently ignored on desktop browsers.
+
+```js
+// Simple vibration (200ms)
+toast({ type: 'info', title: 'Alert!', vibrate: true });
+
+// Custom pattern (vibrate, pause, vibrate)
+toast({ type: 'info', title: 'Incoming call', vibrate: [200, 100, 200] });
+```
+
+### PHP API
+
+```php
+GooeyToast::make('Incoming call', 'info')
+    ->vibrate([200, 100, 200])
+    ->send();
+```
+
 ## Full Options Reference
 
 ```js
@@ -406,6 +495,7 @@ toast({
     type: 'success',             // success, error, warning, info, loading
     title: 'Notification',       // required
     id: 'my-id',                 // optional — use for updates
+    message: 'Text block',      // optional — plain text message
     avatar: '/path/to/image.jpg', // optional — avatar image URL
     avatarSize: '32px',         // optional — avatar size (default: 18px)
     details: [                   // optional — expandable rows
@@ -413,13 +503,14 @@ toast({
     ],
     footer: 'Footer text',      // optional
     actions: [                   // optional — buttons in expanded body
-        { label: 'Click me', icon: 'check', event: 'my-event', data: {} },
+        { label: 'Click me', icon: 'check', event: 'my-event', data: {}, color: '#22c55e', confirm: false },
     ],
     duration: 5000,              // optional — override config duration
     persistent: false,           // optional — never auto-dismiss
     color: '#8b5cf6',            // optional — override type color
     progress: 0.5,              // optional — show progress bar (0 to 1)
     icon: 'star',                // optional — override type icon (registered name)
+    vibrate: true,               // optional — vibrate on mobile (true or [ms] pattern)
 });
 ```
 

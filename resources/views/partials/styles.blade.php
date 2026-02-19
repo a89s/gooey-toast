@@ -111,6 +111,7 @@
         transform: translateY(0) scaleY(1);
     }
 
+    .gooey-toast-message { font-size: 13px; color: var(--gooey-toast-text); opacity: 0.7; line-height: 1.45; padding: 4px 0 6px; word-wrap: break-word; }
     .gooey-toast-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; font-size: 13px; }
     .gooey-toast-label { color: var(--gooey-toast-text-muted); }
     .gooey-toast-value { font-weight: 500; color: var(--gooey-toast-text); }
@@ -119,9 +120,13 @@
 
     .gooey-toast-actions {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 6px;
         padding: 7px 0;
+    }
+    .gooey-toast-actions:has(.gooey-toast-action-btn:nth-child(2)) .gooey-toast-action-btn {
+        flex: 1 1 0;
+        min-width: 0;
     }
     .gooey-toast-action-btn {
         display: flex;
@@ -148,6 +153,10 @@
     .gooey-toast-action-btn:hover {
         background: var(--gooey-toast-action-bg-hover);
         color: var(--gooey-toast-action-text-hover);
+    }
+    .gooey-toast-action-btn.gooey-toast-action-confirm {
+        pointer-events: none;
+        opacity: 0.7;
     }
 
     .gooey-toast-border-tab {
