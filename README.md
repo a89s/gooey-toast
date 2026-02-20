@@ -31,6 +31,16 @@ Publish the config (optional):
 php artisan vendor:publish --tag=gooey-toast-config
 ```
 
+## Publishing Views
+
+To customize the component markup:
+
+```bash
+php artisan vendor:publish --tag=gooey-toast-views
+```
+
+Views will be published to `resources/views/vendor/gooey-toast/`.
+
 ## Setup
 
 Add the component to your layout, just before `</body>`:
@@ -524,16 +534,6 @@ toast({
     vibrate: true,               // optional — vibrate on mobile (true or [ms] pattern)
 });
 ```
-
-## Publishing Views
-
-To customize the component markup:
-
-```bash
-php artisan vendor:publish --tag=gooey-toast-views
-```
-
-Views will be published to `resources/views/vendor/gooey-toast/`.
 
 ## License
 
